@@ -1,0 +1,33 @@
+name: Android APK Uret
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodu Kopyala
+        uses: actions/checkout@v4
+
+      - name: Python Kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Flet Kur
+        run: pip install flet
+
+      - name: Flutter Kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.19.0'
+
+      - name: APK Derle
+        run: flet build apk
+
+      - name: APK'yi İndirilebilir Yap
+        uses: actions/upload-artifact@v4
+        with:
+          name: Marshall-Boya-Sarfiyat-Programi
+          path: build/apk/**/*.apk
